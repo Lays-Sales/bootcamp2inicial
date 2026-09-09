@@ -50,3 +50,8 @@ A aplicação apresenta a imagem ou vídeo astronômico, o título, a data, a ex
 
    ```bash
    git clone https://github.com/Lays-Sales/bootcamp2inicial.git
+ 
+ ## Links
+
+- **Aplicação no ar:** https://lays-sales.github.io/bootcamp2inicial/
+- **Repositório:** https://github.com/Lays-Sales/bootcamp2inicial
