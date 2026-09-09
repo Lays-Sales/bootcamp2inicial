@@ -103,10 +103,13 @@ async function loadApod(date) {
     const data = await response.json();
 
     if (!response.ok || data.error) {
-      throw new Error(
-        data.msg || "Não foi possível encontrar conteúdo para essa data."
-      );
-    }
+  const apiMessage =
+    data.error?.message ||
+    data.msg ||
+    "A NASA recusou a consulta.";
+
+  throw new Error(apiMessage);
+}
 
     showResult(data);
 
@@ -119,9 +122,10 @@ async function loadApod(date) {
     emptyState.hidden = false;
 
     showStatus(
-      "Não foi possível carregar a imagem. Verifique a data ou tente novamente.",
-      "error"
-    );
+  `Não foi possível carregar a imagem: ${error.message}`,
+  "error"
+);
+
 
     console.error("Erro ao consultar a NASA:", error);
   } finally {
