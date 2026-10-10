@@ -3,14 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Explore imagens astronômicas da NASA por data."
-    />
-
+    <meta name="description" content="Explore imagens astronômicas da NASA por data." />
     <title>Janela Cósmica | NASA APOD</title>
-
     <link rel="stylesheet" href="style.css" />
+    
+    <!-- SDK do Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="script.js" defer></script>
   </head>
 
@@ -18,26 +16,17 @@
     <main class="container">
       <header class="hero">
         <p class="eyebrow">NASA · ASTRONOMY PICTURE OF THE DAY</p>
-
         <h1>Janela Cósmica</h1>
-
         <p class="subtitle">
           Explore uma imagem do universo e descubra a história por trás dela.
         </p>
 
         <form id="search-form">
           <label for="date-input">Escolha uma data:</label>
-
           <div class="controls">
             <input id="date-input" type="date" required />
-
-            <button type="submit" id="search-button">
-              Buscar imagem
-            </button>
-
-            <button type="button" id="today-button" class="secondary-button">
-              Ver hoje
-            </button>
+            <button type="submit" id="search-button">Buscar imagem</button>
+            <button type="button" id="today-button" class="secondary-button">Ver hoje</button>
           </div>
         </form>
       </header>
@@ -46,25 +35,15 @@
 
       <section id="empty-state" class="empty-state">
         <h2>Escolha uma data para começar</h2>
-
-        <p>
-          Consulte a imagem astronômica publicada pela NASA.
-        </p>
+        <p>Consulte a imagem astronômica publicada pela NASA.</p>
       </section>
 
       <section id="result-card" class="result-card" hidden>
         <div class="media-container">
           <img id="apod-image" src="" alt="" />
-
           <div id="video-container" class="video-container" hidden>
             <p>O conteúdo selecionado é um vídeo.</p>
-
-            <a
-              id="video-link"
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a id="video-link" href="#" target="_blank" rel="noopener noreferrer">
               Abrir vídeo original
             </a>
           </div>
@@ -77,31 +56,31 @@
           </div>
 
           <h2 id="apod-title"></h2>
-
           <p id="apod-explanation"></p>
-
           <p id="copyright"></p>
 
-          <a
-            id="original-link"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Abrir mídia original
-          </a>
+          <div class="card-actions">
+            <a id="original-link" href="#" target="_blank" rel="noopener noreferrer">
+              Abrir mídia original
+            </a>
+            <button id="favorite-button" class="favorite-button">
+              ⭐ Salvar nos Favoritos
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção CRUD: Meus Favoritos -->
+      <section class="favorites-section">
+        <h2>⭐ Meus Favoritos</h2>
+        <div id="favorites-list" class="favorites-grid">
+          <!-- Itens carregados via JS do Supabase -->
         </div>
       </section>
 
       <footer>
         Dados fornecidos pela
-        <a
-          href="https://www.nasa.gov/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          NASA
-        </a>
+        <a href="https://www.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA</a>
         através da API APOD.
       </footer>
     </main>
